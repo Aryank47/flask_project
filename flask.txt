@@ -1,5 +1,4 @@
-web application frameweork or simply web framework representd a coolection of libraries and modules that enables a web application developer to write applications
-without having to bother about low level details such as protocol.
+web application frameweork or simply web framework represents a collection of libraries and modules that enables a web application developer to write applications without having to bother about low level details such as protocol.
 
 web server gateway interface (wsgi)
 
