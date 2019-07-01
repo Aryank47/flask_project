@@ -44,7 +44,7 @@ def articles():
     result = cur.execute("SELECT id,title,author,create_date FROM articles")
 
     articles = cur.fetchall()
-
+    print(articles)
     if result > 0:
         return render_template('articles.html', articles=articles)
     else:
@@ -176,9 +176,9 @@ def dashboard():
     #result = cur.execute("SELECT * FROM articles")
     # Show articles only from the user logged in 
     result = cur.execute("SELECT * FROM articles WHERE author = %s", [session['username']])
-
+    
     articles = cur.fetchall()
-
+    print(articles)
     if result > 0:
         return render_template('dashboard.html', articles=articles)
     else:
@@ -236,13 +236,13 @@ def edit_article(id):
     form = ArticleForm(request.form)
 
     # Populate article form fields
-    form.title.data = article["title"]
-    form.body.data = article["body"]
+    form.title.data = article[1]
+    form.body.data = article[3]
     #form.id.data = article[0]
 
     if request.method == 'POST' and form.validate():
-        title = request.form[1]
-        body = request.form[3]
+        title = request.form["title"]
+        body = request.form["body"]
 
         # Create Cursor
         cur = mysql.get_db().cursor()
@@ -283,4 +283,4 @@ def delete_article(id):
 
 if __name__ == '__main__':
     app.secret_key='secret123'
-    app.run(debug=True)
+    app.run(debug=True,port=5001)
